@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPagePrincipal.master.cs" Inherits="waAgenda.MasterPagePrincipal" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header><h1>Agenda Web</h1></header>
+            <nav>
+                <asp:Menu ID="Menu1" runat="server" BackColor="#B5C7DE" DynamicHorizontalOffset="2" Font-Bold="True" Font-Names="Verdana" Font-Size="Medium" ForeColor="#284E98" Orientation="Horizontal" StaticSubMenuIndent="10px">
+                    <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#B5C7DE" />
+                    <DynamicSelectedStyle BackColor="#507CD1" />
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/index.aspx" Text="Home" Value="Home"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/usuarios.aspx" Text="Usuario" Value="Usuario"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Contatos.aspx" Text="Contato" Value="Contato"></asp:MenuItem>
+                        <asp:MenuItem Text="Sair" Value="Sair" NavigateUrl="~/default.aspx"></asp:MenuItem>
+                    </Items>
+                    <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticSelectedStyle BackColor="#507CD1" />
+                </asp:Menu>
+        </nav>
+         <main>   
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <asp:SqlDataSource ID="SqlDataSourceUsuarios" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [usuario] WHERE [email] = @email" InsertCommand="INSERT INTO [usuario] ([email], [nome], [senha]) VALUES (@email, @nome, @senha)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [email], [nome], [senha] FROM [usuario]" UpdateCommand="UPDATE [usuario] SET [nome] = @nome, [senha] = @senha WHERE [email] = @email">
+                    <DeleteParameters>
+                        <asp:Parameter Name="email" Type="String" />
+                    </DeleteParameters>
+                    <InsertParameters>
+                        <asp:Parameter Name="email" Type="String" />
+                        <asp:Parameter Name="nome" Type="String" />
+                        <asp:Parameter Name="senha" Type="String" />
+                    </InsertParameters>
+                    <UpdateParameters>
+                        <asp:Parameter Name="nome" Type="String" />
+                        <asp:Parameter Name="senha" Type="String" />
+                        <asp:Parameter Name="email" Type="String" />
+                    </UpdateParameters>
+                </asp:SqlDataSource>
+            </asp:ContentPlaceHolder>
+        </div>
+        </main>
+        <footer>
+            <p2>Site desenvolvido por 
+            </p2>
+               <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="www.linkedin.com/in/kevinvbg">Kevin Vilas Boas</asp:HyperLink>
+               </footer>
+    </form>
+</body>
+</html>
